@@ -1,6 +1,8 @@
 #! /usr/bin/python
 import os
 os.system ('clear')
+##Adding  new comment
+## use this to test Git
 x=[]
 k=0
 while k<2:
