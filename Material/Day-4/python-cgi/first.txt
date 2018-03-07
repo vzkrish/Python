@@ -1,0 +1,53 @@
+#!c:\python27\python.exe
+
+# Import modules for CGI handling 
+import cgi, cgitb 
+
+# Create instance of FieldStorage 
+form = cgi.FieldStorage() 
+
+# Get data from fields
+first_name = form.getvalue('first_name')
+last_name  = form.getvalue('last_name')
+
+a=first_name
+b=last_name
+
+
+
+
+
+print "Content-type:text/html\r\n\r\n"
+print "<html>"
+print "<head>"
+print "<title>Hello - Second CGI Program</title>"
+print "</head>"
+
+print "<body>"
+
+print a,b  
+
+import MySQLdb
+print "connecting to database <br>"
+conn1=MySQLdb.connect('127.0.0.1','root','','test')
+print "creating cursor <br>"
+x=conn1.cursor()
+print "making sql statement <br>"
+sql='insert into test1 values (%s,%s)' % (a,b)
+print "SQL STATEMENT -- " + sql + "<br>"
+print "executing sql <br>"
+x.execute(sql)
+print " executed sql <br> " 
+
+conn1.commit()
+conn1.close() 
+
+
+
+print "<h2>Hello %s %s</h2>" % (a,b)
+print "</body>"
+print "</html>"
+
+
+
+
